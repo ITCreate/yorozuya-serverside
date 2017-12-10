@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"log"
 	"time"
-	"./handler"
+	"github.com/ahaha0807/yorozuya-serverside/handler"
 )
 
 func main() {
