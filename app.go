@@ -5,13 +5,15 @@ import (
 	"net/http"
 	"log"
 	"time"
+	"./handler"
 )
 
 func main() {
 	router := mux.NewRouter()
 
 	// routing
-	router.HandleFunc("/", HomeHandler).Methods("GET")
+	router.HandleFunc("/", handler.HomeHandler).Methods("GET")
+	router.HandleFunc("/api/price", handler.ZaifHandler).Methods("GET")
 
 	// static files settings
 	router.PathPrefix("/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
@@ -28,9 +30,4 @@ func main() {
 	}
 
 	log.Fatal(srv.ListenAndServe())
-}
-
-// ぜひともハンドルファンクションは別ファイルで作りましょう
-func HomeHandler(response http.ResponseWriter, request *http.Request) {
-	http.ServeFile(response, request, "./public/index.html")
 }
