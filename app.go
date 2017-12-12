@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/gorilla/handlers"
 	"net/http"
 	"log"
 	"time"
@@ -29,5 +30,6 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 	}
 
+	log.Println("Server is Running on " + string(srv.Addr))
 	log.Fatal(srv.ListenAndServe())
 }
