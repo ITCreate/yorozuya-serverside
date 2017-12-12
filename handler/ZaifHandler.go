@@ -12,7 +12,7 @@ type Price struct {
 	json.Number `json:"price"`
 }
 
-func ZaifHandler(response http.ResponseWriter, request *http.Request) {
+func ZaifHandler(response http.ResponseWriter, _ *http.Request) {
 	price := Price{GetLastPrice()}
 
 	js, err := json.Marshal(price)
