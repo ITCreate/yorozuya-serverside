@@ -5,7 +5,7 @@
 
 ```
 # goto inside of directory
-go get
+dep ensure
 go run app.go
 ```
 
