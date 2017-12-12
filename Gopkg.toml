@@ -21,10 +21,6 @@
 
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/ahaha0807/yorozuya-serverside"
-
-[[constraint]]
   name = "github.com/antonholmquist/jason"
   version = "1.0.0"
 
