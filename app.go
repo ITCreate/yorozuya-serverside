@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"log"
 	"time"
-	"github.com/ahaha0807/yorozuya-serverside/handler"
+	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
 )
 
 func main() {
@@ -29,5 +29,6 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 	}
 
+	log.Println("Server is Running on " + string(srv.Addr))
 	log.Fatal(srv.ListenAndServe())
 }

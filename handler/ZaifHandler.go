@@ -12,8 +12,8 @@ type Price struct {
 	json.Number `json:"price"`
 }
 
-func ZaifHandler(response http.ResponseWriter, request *http.Request) {
-	price := Price{Get()}
+func ZaifHandler(response http.ResponseWriter, _ *http.Request) {
+	price := Price{GetLastPrice()}
 
 	js, err := json.Marshal(price)
 	if err != nil {
@@ -21,15 +21,10 @@ func ZaifHandler(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	response.Header().Set("Content-Type", "application/json")
+	response.Header().Set("Content-Type:", "application/json")
 	response.Write(js)
 }
 
-func Get() json.Number {
-	price := GetLastPrice()
-
-	return price
-}
 
 func GetLastPrice() json.Number {
 	const url = "https://api.zaif.jp/api/1/last_price/btc_jpy"
