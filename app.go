@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"log"
 	"github.com/gorilla/handlers"
-	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
+	"github.com/ahaha0807/yorozuya-serverside/handler"
 )
 
 type Config struct {
@@ -16,7 +16,8 @@ type Config struct {
 func main() {
 	config := Config{
 		Addr: "127.0.0.1",
-		Port: ":9999"}
+		Port: ":9999",
+	}
 
 	router := mux.NewRouter()
 
