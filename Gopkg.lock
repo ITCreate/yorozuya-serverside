@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/ahaha0807/yorozuya-serverside"
   packages = ["handler"]
-  revision = "4938a20d48b35126c598b4b5be4cbb6a530e885e"
+  revision = "e8a21e60905d9b9310c7fd08f45acce111e41c28"
 
 [[projects]]
   name = "github.com/antonholmquist/jason"
@@ -28,6 +28,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "514279a7411c747f922b2de11540c6d70700142374faf5d8576fac43ae3bc823"
+  inputs-digest = "08999f32805e157117854792b07e5581b38e954b889007b184384a844260ded6"
   solver-name = "gps-cdcl"
   solver-version = 1
