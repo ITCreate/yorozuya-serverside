@@ -1,28 +1,25 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"net/http"
 	"log"
 	"time"
-	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
+	"github.com/rs/cors"
+	"github.com/ahaha0807/ishikari-2017-gorilla/handlers"
 )
 
 func main() {
-	router := mux.NewRouter()
+	router := http.NewServeMux()
 
 	// routing
-	router.HandleFunc("/", handler.HomeHandler).Methods("GET")
-	router.HandleFunc("/api/price", handler.ZaifHandler).Methods("GET")
+	router.HandleFunc("/", handlers.HomeHandler)
+	router.HandleFunc("/api/price", handlers.ZaifHandler)
 
-	// static files settings
-	router.PathPrefix("/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
-
-	http.Handle("/", router)
+	handler := cors.Default().Handler(router)
 
 	// server setting
 	srv := &http.Server{
-		Handler: router,
+		Handler: handler,
 		Addr:    "127.0.0.1:9999",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
