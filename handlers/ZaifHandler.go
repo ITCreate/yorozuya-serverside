@@ -1,4 +1,4 @@
-package handler
+package handlers
 
 import (
 	"net/http"
@@ -21,7 +21,6 @@ func ZaifHandler(response http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
-	response.Header().Set("Content-Type:", "application/json")
 	response.Write(js)
 }
 
