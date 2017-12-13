@@ -1,31 +1,25 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
 	"net/http"
 	"log"
-	"time"
-	"github.com/rs/cors"
-	"github.com/ahaha0807/ishikari-2017-gorilla/handlers"
+	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
+	"github.com/gorilla/handlers"
 )
 
 func main() {
-	router := http.NewServeMux()
+	router := mux.NewRouter()
 
 	// routing
-	router.HandleFunc("/", handlers.HomeHandler)
-	router.HandleFunc("/api/price", handlers.ZaifHandler)
+	router.HandleFunc("/", handler.HomeHandler).Methods("GET")
+	router.HandleFunc("/api/price", handler.ZaifHandler).Methods("GET")
 
-	handler := cors.Default().Handler(router)
+	// static files settings
+	router.PathPrefix("/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
 
-	// server setting
-	srv := &http.Server{
-		Handler: handler,
-		Addr:    "127.0.0.1:9999",
-		// Good practice: enforce timeouts for servers you create!
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
+	http.Handle("/", router)
 
-	log.Println("Server is Running on " + string(srv.Addr))
-	log.Fatal(srv.ListenAndServe())
+	log.Println("Server is Running on " + string("127.0.0.1:9999"))
+	log.Fatal(http.ListenAndServe(":9999", handlers.CORS()(router)))
 }
