@@ -4,11 +4,20 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"log"
-	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
 	"github.com/gorilla/handlers"
+	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
 )
 
+type Config struct {
+	Addr string
+	Port string
+}
+
 func main() {
+	config := Config{
+		Addr: "127.0.0.1",
+		Port: ":9999"}
+
 	router := mux.NewRouter()
 
 	// routing
@@ -20,6 +29,6 @@ func main() {
 
 	http.Handle("/", router)
 
-	log.Println("Server is Running on " + string("127.0.0.1:9999"))
-	log.Fatal(http.ListenAndServe(":9999", handlers.CORS()(router)))
+	log.Println("Server is Running on " + config.Addr + config.Port)
+	log.Fatal(http.ListenAndServe(config.Port, handlers.CORS()(router)))
 }
