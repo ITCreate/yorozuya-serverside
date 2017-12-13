@@ -22,7 +22,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/ahaha0807/yorozuya-serverside"
+  name = "github.com/ahaha0807/ishikari-2017-gorilla"
 
 [[constraint]]
   name = "github.com/antonholmquist/jason"
