@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
-	"log"
-	"github.com/gorilla/handlers"
 	"github.com/ahaha0807/yorozuya-serverside/handler"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 )
 
 type Config struct {
@@ -23,7 +23,9 @@ func main() {
 
 	// routing
 	router.HandleFunc("/", handler.HomeHandler).Methods("GET")
+	router.HandleFunc("/ranking", handler.RankingPageHandler).Methods("GET")
 	router.HandleFunc("/api/price", handler.ZaifHandler).Methods("GET")
+	router.HandleFunc("/api/ranking", handler.RankingHandler).Methods("GET")
 
 	// static files settings
 	router.PathPrefix("/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))
