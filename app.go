@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
-	"log"
+	"github.com/ahaha0807/yorozuya-serverside/handler"
 	"github.com/gorilla/handlers"
-	"github.com/ahaha0807/ishikari-2017-gorilla/handler"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 )
 
 type Config struct {
@@ -16,13 +16,16 @@ type Config struct {
 func main() {
 	config := Config{
 		Addr: "127.0.0.1",
-		Port: ":9999"}
+		Port: ":9999",
+	}
 
 	router := mux.NewRouter()
 
 	// routing
 	router.HandleFunc("/", handler.HomeHandler).Methods("GET")
+	router.HandleFunc("/ranking", handler.RankingPageHandler).Methods("GET")
 	router.HandleFunc("/api/price", handler.ZaifHandler).Methods("GET")
+	router.HandleFunc("/api/ranking", handler.RankingHandler).Methods("GET")
 
 	// static files settings
 	router.PathPrefix("/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public/"))))

@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"net/http"
 	"encoding/json"
-	"log"
-	"io/ioutil"
 	"github.com/antonholmquist/jason"
+	"io/ioutil"
+	"log"
+	"net/http"
 )
 
 type Price struct {
@@ -23,7 +23,6 @@ func ZaifHandler(response http.ResponseWriter, _ *http.Request) {
 
 	response.Write(js)
 }
-
 
 func GetLastPrice() json.Number {
 	const url = "https://api.zaif.jp/api/1/last_price/btc_jpy"
